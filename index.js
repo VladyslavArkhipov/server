@@ -6,15 +6,15 @@ const app = express();
 
 app.use(cors()); // Добавьте эту строку
 
+app.get("/", (req, res) => {
+  res.json({ message: "Server is running" });
+});
+
 app.use("/", (req, res) => {
   res.send("Server is running");
 });
 
 app.use(express.json()); // Добавьте эту строку для парсинга JSON-тела запроса
-
-app.get("/", (req, res) => {
-  res.json({ message: "Server is running" });
-});
 
 const mailjet = Mailjet.apiConnect(
   process.env.MJ_APIKEY_PUBLIC || "0cba6a8a1aa99e3c12507df0cac3a582",
