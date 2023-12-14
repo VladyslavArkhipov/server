@@ -1,6 +1,6 @@
 const express = require("express");
 const Mailjet = require("node-mailjet");
-const cors = require("cors"); // Добавьте эту строку
+const cors = require("cors");
 
 const app = express();
 
@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
 });
 
-app.use(express.json()); // Добавьте эту строку для парсинга JSON-тела запроса
+app.use(express.json());
 
 const mailjet = Mailjet.apiConnect(
   process.env.MJ_APIKEY_PUBLIC || "0cba6a8a1aa99e3c12507df0cac3a582",
@@ -19,7 +19,7 @@ const mailjet = Mailjet.apiConnect(
 
 app.post("/send-email", async (req, res) => {
   try {
-    const { email } = req.body;
+    const { form } = req.body;
 
     const request = mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
@@ -36,7 +36,7 @@ app.post("/send-email", async (req, res) => {
           ],
           Subject: "Your email flight plan!",
           TextPart: "Text",
-          HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${email}`,
+          HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${form}`,
         },
       ],
     });
