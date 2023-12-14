@@ -21,6 +21,13 @@ app.post("/send-email", async (req, res) => {
   try {
     const formData = req.body;
 
+    let emailBody = "<h3>Dear recipient, welcome to Mailjet!</h3><br />";
+
+    // Перебираем свойства formData и добавляем их к строке emailBody
+    for (const [key, value] of Object.entries(formData)) {
+      emailBody += `<p>${key}: ${value}</p>`;
+    }
+
     const request = mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
         {
@@ -36,7 +43,7 @@ app.post("/send-email", async (req, res) => {
           ],
           Subject: "Your email flight plan!",
           TextPart: "Text",
-          HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${formData}`,
+          HTMLPart: emailBody,
         },
       ],
     });
