@@ -4,7 +4,13 @@ const cors = require("cors"); // Добавьте эту строку
 
 const app = express();
 
-app.use(cors()); // Добавьте эту строку
+app.use(
+  cors({
+    origin: "https://your-react-app-url.com",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
