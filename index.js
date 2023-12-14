@@ -12,8 +12,6 @@ const mailjet = Mailjet.apiConnect(
 );
 
 app.post("/send-email", async (req, res) => {
-  const { email } = req.body;
-
   const request = mailjet.post("send", { version: "v3.1" }).request({
     Messages: [
       {
@@ -29,7 +27,7 @@ app.post("/send-email", async (req, res) => {
         ],
         Subject: "Your email flight plan!",
         TextPart: "Text",
-        HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${email}`,
+        HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />wefwefwefe`,
       },
     ],
   });
