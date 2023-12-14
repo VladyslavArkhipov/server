@@ -33,7 +33,7 @@ app.post("/send-email", async (req, res) => {
         ],
         Subject: "Your email flight plan!",
         TextPart: "Text",
-        HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />цуацуацуа`,
+        HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${email}`,
       },
     ],
   });
