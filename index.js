@@ -4,13 +4,7 @@ const cors = require("cors"); // Добавьте эту строку
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
