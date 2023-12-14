@@ -1,7 +1,10 @@
 const express = require("express");
 const Mailjet = require("node-mailjet");
+const cors = require("cors"); // Добавьте эту строку
+
 const app = express();
 
+app.use(cors()); // Добавьте эту строку
 app.use("/", (req, res) => {
   res.send("Server is running");
 });
