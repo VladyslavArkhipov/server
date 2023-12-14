@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
-//comment
+
+app.get("/test", (req, res) => {
+  res.send("GET request received successfully");
+});
+
 app.use("/", (req, res) => {
   res.send("Server is running");
 });
