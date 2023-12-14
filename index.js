@@ -28,29 +28,29 @@ const mailjet = Mailjet.apiConnect(
 );
 
 app.post("/send-email", async (req, res) => {
-  const { email } = req.body;
-
-  const request = mailjet.post("send", { version: "v3.1" }).request({
-    Messages: [
-      {
-        From: {
-          Email: "arhanich007@gmail.com",
-          Name: "Mailjet Pilot",
-        },
-        To: [
-          {
-            Email: "arhanich007@gmail.com",
-            Name: "Recipient",
-          },
-        ],
-        Subject: "Your email flight plan!",
-        TextPart: "Text",
-        HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${email}`,
-      },
-    ],
-  });
-
   try {
+    const { email } = req.body;
+
+    const request = mailjet.post("send", { version: "v3.1" }).request({
+      Messages: [
+        {
+          From: {
+            Email: "arhanich007@gmail.com",
+            Name: "Mailjet Pilot",
+          },
+          To: [
+            {
+              Email: "arhanich007@gmail.com",
+              Name: "Recipient",
+            },
+          ],
+          Subject: "Your email flight plan!",
+          TextPart: "Text",
+          HTMLPart: `<h3>Dear recipient, welcome to Mailjet!</h3><br />${email}`,
+        },
+      ],
+    });
+
     const result = await request;
     console.log(result.body);
     res.status(200).json({ message: "Email sent successfully" });
