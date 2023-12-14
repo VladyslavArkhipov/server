@@ -41,10 +41,10 @@ app.post("/send-email", async (req, res) => {
   try {
     const result = await request;
     console.log(result.body);
-    res.status(200).send("Email sent successfully");
+    res.status(200).json({ message: "Email sent successfully" });
   } catch (err) {
     console.error(err.statusCode);
-    res.status(500).send("Failed to send email");
+    res.status(500).json({ message: "Failed to send email" });
   }
 });
 
