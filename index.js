@@ -16,10 +16,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
 });
 
-app.use("/", (req, res) => {
-  res.send("Server is running");
-});
-
 app.use(express.json()); // Добавьте эту строку для парсинга JSON-тела запроса
 
 const mailjet = Mailjet.apiConnect(
