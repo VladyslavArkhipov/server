@@ -13,8 +13,8 @@ app.get("/", (req, res) => {
 app.use(express.json());
 
 const mailjet = Mailjet.apiConnect(
-  process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE
+  process.env.MJ_APIKEY_PUBLIC || "0cba6a8a1aa99e3c12507df0cac3a582",
+  process.env.MJ_APIKEY_PRIVATE || "43e061e2317d086c79804b04c3a6e7d5"
 );
 
 app.post("/send-email", async (req, res) => {
