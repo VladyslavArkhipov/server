@@ -1,6 +1,7 @@
 const express = require("express");
 const Mailjet = require("node-mailjet");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
